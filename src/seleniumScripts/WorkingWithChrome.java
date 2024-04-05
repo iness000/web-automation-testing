@@ -76,6 +76,29 @@ public class WorkingWithChrome {
     	driver.findElement(By.id("search_query_top")).sendKeys(product);
     	driver.findElement(By.name("submit_search")).click();	
     }
+    
+      
+     void changePersonalInfo(String name , String Surname , String cin) {
+    	 driver.findElement(By.id("_desktop_user_info")).click();
+         new WebDriverWait(driver, 20).until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@title='Voir mon compte client']"))).click();
+    	 driver.findElement(By.id("identity-link")).click();
+    	 WebElement firstName = driver.findElement(By.name("firstname"));
+         WebElement lastName = driver.findElement(By.name("lastname"));
+         WebElement ciin = driver.findElement(By.name("num_cin"));
+         
+         firstName.clear();
+         firstName.sendKeys(name);
+
+         lastName.clear();
+         lastName.sendKeys(Surname);
+
+         ciin.clear();
+         ciin.sendKeys(cin);
+         
+     	driver.findElementByXPath("//*[@id=\"customer-form\"]/footer/button").click();
+     	
+    	 
+     } 
 	
 /*	
 	public static void main(String [] args) {

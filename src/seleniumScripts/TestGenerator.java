@@ -28,6 +28,8 @@ public class TestGenerator {
 		this.TestingWebsiteTitle();
 		this.TestingLoginFalsePassword();
 		this.TestingLogin();
+		this.testingSearch();
+		this.TestingEditAccount();
 		this.TestingLogout();
 	}
 	
@@ -56,11 +58,19 @@ public class TestGenerator {
         assertEquals("Identifiant", connection.driver.getTitle());
     }
     
-    @Test
+    
     public void testingSearch() {
     	connection.search("danette");
     	WebElement product = connection.driver.findElementByXPath("//*[@id=\"js-product-list\"]/div/div[1]/article/div/div[3]/div[2]/p");
     	assertEquals("DANETTE",product.getText());
+    }
+    
+    public void TestingEditAccount() {
+    	connection.changePersonalInfo("sarah", "jebri", "1234567");
+    	WebElement successBox = connection.driver.findElement(By.id("notifications")); 
+    	assertTrue(successBox.isDisplayed());
+    	
+    	
     }
 	
 }
